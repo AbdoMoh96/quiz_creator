@@ -4,7 +4,7 @@ import styled from "styled-components";
 const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, 350px);
-  grid-auto-rows: 200px;
+  grid-auto-rows: 250px;
   grid-column-gap: 4rem;
   grid-row-gap: 4rem;
   justify-content: center;
@@ -21,8 +21,14 @@ const CardContainer = styled.section`
     padding: 0 1rem;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    gap: 10px;
 
-    span {
+    .action_group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .info_span {
       font-size: 1.2rem;
       text-transform: capitalize;
     }

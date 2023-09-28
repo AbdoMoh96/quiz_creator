@@ -14,7 +14,7 @@ const HomePage: React.FC<propTypes> = () => {
         <Layout>
             <CardContainer>
                 {quizzes.map((quiz) => {
-                    return <Card quiz={quiz}/>;
+                    return <Card key={quiz.id} quiz={quiz}/>;
                 })}
             </CardContainer>
         </Layout>
