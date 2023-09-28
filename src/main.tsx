@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import HomePage from "@/Pages/HomePage";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-   <h1>fresh app</h1>
+   <HomePage/>
   </React.StrictMode>,
 );
