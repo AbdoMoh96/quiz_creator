@@ -3,6 +3,7 @@ import {Button} from 'antd';
 import {Quiz} from "@/Types/QuizType.ts";
 import {useDispatch} from "react-redux";
 import {deleteQuiz} from "@/Redux/Reducers/QuizSlice.ts";
+import {useNavigate} from "react-router-dom";
 import swal from "sweetalert";
 
 
@@ -14,6 +15,7 @@ interface propTypes {
 const Card: React.FC<propTypes> = ({quiz}) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handelQuizDelete = (quizId: number | string) => {
         swal({
@@ -42,7 +44,7 @@ const Card: React.FC<propTypes> = ({quiz}) => {
             <span className='info_span'>score : {quiz.score ?? 0} / 100 </span>
 
             <div className='action_group'>
-                <Button type="primary">Preview</Button>
+                <Button type="primary" onClick={() => navigate(`/quiz/preview/${quiz.id}`)}>Preview</Button>
                 <Button type="primary">Edit</Button>
                 <Button type="primary" danger onClick={() => handelQuizDelete(quiz.id)}>Delete</Button>
             </div>

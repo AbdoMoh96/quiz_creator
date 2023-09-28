@@ -79,7 +79,7 @@ const quiz1 = {
     ],
     score: null,
     title: "History Quiz",
-    url: "https://www.youtube.com/watch?v=e6EGQFJLl04"
+    url: "https://www.youtube.com/embed/rF8mcg0UHv8?si=cLeP4suSTq565FMX"
 };
 
 const quiz2 = {
@@ -144,7 +144,7 @@ const quiz2 = {
     ],
     score: null,
     title: "Science Quiz",
-    url: "https://www.youtube.com/watch?v=e6EGQFJLl04"
+    url: "https://www.youtube.com/embed/QITlKIFMIxk?si=ZUfIIw7eUAjoYj0X"
 };
 
 const quiz3 = {
@@ -214,7 +214,7 @@ const quiz3 = {
     ],
     score: null,
     title: "Geography Quiz",
-    url: "https://www.youtube.com/watch?v=e6EGQFJLl04"
+    url: "https://www.youtube.com/embed/KZx5mKXY5yU?si=lb8zVoWvBXXkntCs"
 };
 
 const quiz4 = {
@@ -284,12 +284,12 @@ const quiz4 = {
     ],
     score: null,
     title: "Music Quiz",
-    url: "https://www.youtube.com/watch?v=e6EGQFJLl04"
+    url: "https://www.youtube.com/embed/vqzxwGDLiEE?si=aCsc01ollhJ3wmxZ"
 };
 
 export default [
-  quiz1,
-  quiz2,
-  quiz3,
-  quiz4
+    quiz1,
+    quiz2,
+    quiz3,
+    quiz4
 ];

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import TopNavContainer from "@/Layout/Components/TopNav/Components/TopNavContainer.tsx";
 
 
@@ -9,7 +10,23 @@ const TopNav: React.FC<propTypes> = () => {
 
     return (
         <TopNavContainer>
-            <span className='app_logo'>quiz creator</span>
+            <Link className='app_logo' to='/home'>
+                quiz creator
+            </Link>
+
+            <ul>
+                <li>
+                    <Link to='/home'>
+                        home
+                    </Link>
+                </li>
+
+                <li>
+                    <Link to='/home'>
+                        quizzes
+                    </Link>
+                </li>
+            </ul>
         </TopNavContainer>
     );
 };
