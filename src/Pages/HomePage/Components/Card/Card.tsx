@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button} from 'antd';
 import {Quiz} from "@/Types/QuizType.ts";
+import {useDispatch} from "react-redux";
+import {deleteQuiz} from "@/Redux/Reducers/QuizSlice.ts";
 
 
 interface propTypes {
@@ -9,6 +11,12 @@ interface propTypes {
 
 
 const Card: React.FC<propTypes> = ({quiz}) => {
+
+    const dispatch = useDispatch();
+
+    const handelQuizDelete = (quizId: number | string) => {
+        dispatch(deleteQuiz(quizId));
+    };
 
 
     return (
@@ -21,7 +29,7 @@ const Card: React.FC<propTypes> = ({quiz}) => {
             <div className='action_group'>
                 <Button type="primary">Preview</Button>
                 <Button type="primary">Edit</Button>
-                <Button type="primary" danger>Delete</Button>
+                <Button type="primary" danger onClick={() => handelQuizDelete(quiz.id)}>Delete</Button>
             </div>
 
         </div>

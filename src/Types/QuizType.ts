@@ -1,11 +1,11 @@
 interface Answer {
-    id: number;
+    id: number | string;
     is_true: boolean;
     text: string;
 }
 
 interface Question {
-    id: number;
+    id: number | string;
     text: string;
     feedback_false: string;
     feedback_true: string;
@@ -14,7 +14,7 @@ interface Question {
 }
 
 interface Quiz {
-    id: number;
+    id: number | string;
     title: string;
     description: string;
     score: null | number;
@@ -25,4 +25,4 @@ interface Quiz {
 }
 
 
-export type { Quiz, Answer, Question };
+export type {Quiz, Answer, Question};
