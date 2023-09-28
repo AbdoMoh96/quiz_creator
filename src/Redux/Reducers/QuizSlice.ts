@@ -10,7 +10,7 @@ interface actionType {
 }
 
 export const QuizSlice = createSlice({
-    name: 'todos',
+    name: 'quiz',
     initialState: quizzes,
     reducers: {
         addQuiz: (state, action: actionType) => {

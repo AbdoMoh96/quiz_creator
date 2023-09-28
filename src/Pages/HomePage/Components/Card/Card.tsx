@@ -3,6 +3,7 @@ import {Button} from 'antd';
 import {Quiz} from "@/Types/QuizType.ts";
 import {useDispatch} from "react-redux";
 import {deleteQuiz} from "@/Redux/Reducers/QuizSlice.ts";
+import swal from "sweetalert";
 
 
 interface propTypes {
@@ -15,7 +16,21 @@ const Card: React.FC<propTypes> = ({quiz}) => {
     const dispatch = useDispatch();
 
     const handelQuizDelete = (quizId: number | string) => {
-        dispatch(deleteQuiz(quizId));
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this quiz!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    dispatch(deleteQuiz(quizId));
+                    swal("quiz has been deleted!", {
+                        icon: "success",
+                    });
+                }
+            });
     };
 
 
