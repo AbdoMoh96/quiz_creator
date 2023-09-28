@@ -1,19 +1,22 @@
 import React from 'react';
 import Layout from "@/Layout";
-// import QuizSelector from "@/Redux/Selectors/QuizSelector.ts";
+import CardContainer from "@/Pages/HomePage/Components/CardContaner.tsx";
+import QuizSelector from "@/Redux/Selectors/QuizSelector.ts";
+import Card from "@/Pages/HomePage/Components/Card/Card.tsx";
 
-interface propTypes {}
+interface propTypes {
+}
 
-const HomePage : React.FC<propTypes> = () => {
-    //const quizzes = QuizSelector();
-
-    /*{quizzes.map((quiz) => {
-                return <h1>{quiz.title}</h1>;
-            })}*/
+const HomePage: React.FC<propTypes> = () => {
+    const quizzes = QuizSelector();
 
     return (
         <Layout>
-          <h4>Home Page</h4>
+            <CardContainer>
+                {quizzes.map((quiz) => {
+                    return <Card quiz={quiz}/>;
+                })}
+            </CardContainer>
         </Layout>
     );
 };
