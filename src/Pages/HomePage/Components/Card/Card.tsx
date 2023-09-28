@@ -20,7 +20,7 @@ const Card: React.FC<propTypes> = ({quiz}) => {
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this quiz!",
             icon: "warning",
-            buttons: true,
+            buttons: [true, true],
             dangerMode: true,
         })
             .then((willDelete) => {
