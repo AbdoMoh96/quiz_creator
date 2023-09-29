@@ -38,7 +38,7 @@ const QuizPreview: React.FC<propTypes> = () => {
             </div>
 
             <QuestionCardContainer>
-                {quiz?.questions_answers.map(question => {
+                {quiz?.questions_answers?.map(question => {
                     return <QuestionCard key={question.id} question={question}/>;
                 })}
             </QuestionCardContainer>

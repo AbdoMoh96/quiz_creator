@@ -26,6 +26,12 @@ const TopNav: React.FC<propTypes> = () => {
                         quizzes
                     </Link>
                 </li>
+
+                <li>
+                    <Link to='/quiz/create'>
+                        create quiz
+                    </Link>
+                </li>
             </ul>
         </TopNavContainer>
     );
