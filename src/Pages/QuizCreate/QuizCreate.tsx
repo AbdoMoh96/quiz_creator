@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import Layout from "@/Layout";
-import {Card, Input, Button} from 'antd';
+import {Card, Input, Button, List, Modal, Switch} from 'antd';
 import {useForm, SubmitHandler, Controller} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {addQuiz} from "@/Redux/Reducers/QuizSlice.ts";
-import {Quiz, Question} from "@/Types/QuizType.ts";
+import {Quiz, Question, Answer} from "@/Types/QuizType.ts";
 import {useNavigate} from "react-router-dom";
 import {nanoid} from "nanoid";
 
@@ -23,11 +23,22 @@ const QuizCreate: React.FC<propTypes> = () => {
         feedback_false: '',
     };
 
+    const initialAnswer = {
+        questionId: '',
+        answer: {
+            id: '',
+            is_true: false,
+            text: '',
+        }
+    };
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const quizId = nanoid();
     const [questions, setQuestions] = useState<Array<Question>>([]);
     const [questionData, setQuestionData] = useState<Question>(initialQuestion);
+    const [answerData, setAnswerData] = useState<{ questionId: string | number, answer: Answer }>(initialAnswer);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const {
         handleSubmit,
@@ -52,6 +63,32 @@ const QuizCreate: React.FC<propTypes> = () => {
             feedback_false: questionData.feedback_false,
         }]);
         setQuestionData(initialQuestion);
+    };
+
+    const handelOpenModal = (questionId: string | number) => {
+        setAnswerData({...answerData, questionId: questionId});
+        setIsModalOpen(true);
+    };
+
+    const handelCloseModal = () => {
+        setAnswerData({...answerData, questionId: ''});
+        setIsModalOpen(false);
+    };
+
+    const handelAddAnswers = () => {
+        const questionIndex = questions.findIndex((question) => question.id === answerData.questionId);
+        const updatedQuestions = [...questions];
+        updatedQuestions[questionIndex] = {
+            ...updatedQuestions[questionIndex],
+            answers: [...updatedQuestions[questionIndex].answers, {
+                id: nanoid(),
+                is_true: answerData.answer.is_true,
+                text: answerData.answer.text
+            }],
+        };
+        setQuestions(updatedQuestions);
+        setAnswerData(initialAnswer);
+        setIsModalOpen(false);
     };
 
     return (
@@ -103,7 +140,7 @@ const QuizCreate: React.FC<propTypes> = () => {
                             display: "flex",
                             gap: '1rem',
                             flexDirection: 'column',
-                            border: '1px solid black',
+                            border: '1px solid #bfbfbf',
                             borderRadius: '10px',
                             padding: '2rem',
                             marginBottom: '4rem'
@@ -127,6 +164,64 @@ const QuizCreate: React.FC<propTypes> = () => {
                                 Add Question
                             </Button>
                         </div>
+
+                        <List
+                            size="small"
+                            style={{marginBottom: '4rem'}}
+                            header={<div>Questions</div>}
+                            bordered
+                            dataSource={questions}
+                            renderItem={(item) => <List.Item style={{display: 'block', marginBottom: '2rem'}}>
+                                <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+                                    {item.text}
+                                    <Button type='primary'
+                                            onClick={() => handelOpenModal(item.id)}
+                                            htmlType='button'
+                                            style={{marginBottom: '0.5rem'}}>
+                                        Add Answer
+                                    </Button>
+                                </div>
+                                <List
+                                    size="small"
+                                    bordered
+                                    header={<div>Answers</div>}
+                                    dataSource={item.answers}
+                                    renderItem={(item) => <List.Item>{item.text}</List.Item>}
+                                />
+                            </List.Item>
+                            }
+                        />
+
+                        <Modal title="Answer Create" open={isModalOpen} onOk={() => handelAddAnswers()}
+                               onCancel={() => handelCloseModal()}>
+                            <Input
+                                value={answerData.answer.text}
+                                onChange={(event) =>
+                                    setAnswerData({
+                                        ...answerData,
+                                        answer: {
+                                            ...answerData.answer,
+                                            text: event.target.value,
+                                        },
+                                    })
+                                }
+                                style={{marginBottom: '1rem'}}
+                                placeholder="answer text"
+                            />
+
+                            <div>
+                                <span>is this the correct answer ?</span> <br/>
+                                <Switch onChange={(value) =>
+                                    setAnswerData({
+                                        ...answerData,
+                                        answer: {
+                                            ...answerData.answer,
+                                            is_true: value,
+                                        },
+                                    })
+                                }/>
+                            </div>
+                        </Modal>
 
 
                         <Button type='primary' htmlType='submit'>
