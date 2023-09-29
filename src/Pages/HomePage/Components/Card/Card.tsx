@@ -17,7 +17,7 @@ const Card: React.FC<propTypes> = ({quiz}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handelQuizDelete = (quizId: number | string) => {
+    const handelQuizDelete = (quizId: string | number) => {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this quiz!",
