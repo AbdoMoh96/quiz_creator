@@ -40,7 +40,7 @@ const Card: React.FC<propTypes> = ({quiz}) => {
         <div className='card'>
             <span className='info_span'>title : {quiz.title}</span>
             <span className='info_span'>description : {quiz.description}</span>
-            <span className='info_span'>questions : {quiz.questions_answers.length} </span>
+            <span className='info_span'>questions : {quiz?.questions_answers?.length} </span>
             <span className='info_span'>score : {quiz.score ?? 0} / 100 </span>
 
             <div className='action_group'>

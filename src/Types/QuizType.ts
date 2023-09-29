@@ -36,7 +36,7 @@ const quizSchema = yup.object({
     score: yup.number().nullable(),
     modified: yup.string(),
     url: yup.string(),
-    questions_answers: yup.array(questionSchema).required(),
+    questions_answers: yup.array(questionSchema),
     created: yup.string().nullable(),
 });
 
